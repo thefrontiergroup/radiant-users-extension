@@ -1,6 +1,6 @@
 class AddApiKeyToUsers < ActiveRecord::Migration
   def self.up
-    add_column :users, :api_key, :string, :limit => 40, :default => ""
+    add_column :users, :api_key, :string, :limit => 40, :default => ''
   end
 
   def self.down

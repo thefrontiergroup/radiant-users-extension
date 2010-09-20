@@ -1,4 +1,4 @@
-= Login Candy
+# Login Candy
 
 This extension allows you to give all your users an API key.
 
@@ -8,29 +8,29 @@ For example your site has members. They need a login to look at all their messag
 
 Just sublcass your User model
 
-class Member < User
+    class Member < User
 
-end
+    end
 
 Now when you create a member set their "access" rights to 'front' which means they can only see the front-end of your app.
 
-Member.new(:access => 'front');
+    Member.new(:access => 'front');
 
 Now when the member logs in they will be redirected to 
 
-www.myapp.com/visitors
+    www.myapp.com/visitors
 
-If you want them to be redirected to www.myapp/members
+If you want them to be redirected to www.myapp/members then just set
 
-then just set Radiant::Config['login.visitor_url'] = '/members'
+    Radiant::Config['login.visitor_url'] = '/members'
 
 Your visitors also have an API key so they can acccess your app through the API. You'll need to write your own restrictions though.
 
-= Installation
+# Installation
 
-git clone git://github.com:sbmsuite/radiant-login_candy-extension.git vendor/extensions/login_candy
+    git clone git://github.com:sbmsuite/radiant-login_candy-extension.git vendor/extensions/login_candy
 
-rake radiant:extensions:login_candy:migrate
+    rake radiant:extensions:login_candy:migrate
 
 
 
