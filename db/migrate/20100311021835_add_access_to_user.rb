@@ -1,6 +1,6 @@
 class AddAccessToUser < ActiveRecord::Migration
   def self.up
-    add_column :users, :access, :string, :default => 'all'
+    add_column :users, :access, :string, :default => ''
   end
 
   def self.down

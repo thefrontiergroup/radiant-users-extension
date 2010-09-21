@@ -1,16 +1,15 @@
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "radiant-login_candy-extension"
-    gem.summary = %Q{Login Candy Extension for Radiant CMS}
-    gem.description = %Q{Describe your extension here}
-    gem.email = "rankin.devon@gmail.com"
-    gem.homepage = "http://github.com/crankin/radiant-login_candy-extension"
-    gem.authors = ["Christopher Rankin"]
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.name = "radiant-scoped-extension"
+    gem.summary = %Q{Scoped Extension for Radiant CMS}
+    gem.description = %Q{Scoped allows you to create non-admin users with API access}
+    gem.email = "dk@squaretalent.com"
+    gem.homepage = "http://github.com/squaretalent/radiant-scoped-extension"
+    gem.authors = ["Christopher Rankin", "Dirk Kelly"]
   end
 rescue LoadError
-  puts "Jeweler (or a dependency) not available. This is only required if you plan to package login_candy as a gem."
+  puts "Jeweler (or a dependency) not available. This is only required if you plan to package scoped as a gem."
 end
 
 # In rails 1.2, plugins aren't available in the path until they're loaded.
@@ -115,17 +114,17 @@ namespace :spec do
   end
 end
 
-desc 'Generate documentation for the login_candy extension.'
+desc 'Generate documentation for the scoped extension.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'LoginCandyExtension'
+  rdoc.title    = 'ScopedExtension'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
 # For extensions that are in transition
-desc 'Test the login_candy extension.'
+desc 'Test the scoped extension.'
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
   t.pattern = 'test/**/*_test.rb'

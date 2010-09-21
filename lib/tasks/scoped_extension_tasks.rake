@@ -1,30 +1,30 @@
 namespace :radiant do
   namespace :extensions do
-    namespace :login_candy do
+    namespace :scoped do
       
-      desc "Runs the migration of the LoginCandy extension"
+      desc "Runs the migration of the Scoped extension"
       task :migrate => [ :environment, 'radiant:extensions:forms:migrate' ] do
         require 'radiant/extension_migrator'
         if ENV["VERSION"]
-          LoginCandyExtension.migrator.migrate(ENV["VERSION"].to_i)
+          ScopedExtension.migrator.migrate(ENV["VERSION"].to_i)
         else
-          LoginCandyExtension.migrator.migrate
+          ScopedExtension.migrator.migrate
         end
         Rake::Task['db:schema:dump'].invoke
       end
       
-      desc "Copies public assets of the LoginCandy to the instance public/ directory."
+      desc "Copies public assets of the Scoped to the instance public/ directory."
       task :update => :environment do
         is_svn_or_dir = proc {|path| path =~ /\.svn/ || File.directory?(path) }
-        puts "Copying assets from LoginCandyExtension"
-        Dir[LoginCandyExtension.root + "/public/**/*"].reject(&is_svn_or_dir).each do |file|
-          path = file.sub(LoginCandyExtension.root, '')
+        puts "Copying assets from ScopedExtension"
+        Dir[ScopedExtension.root + "/public/**/*"].reject(&is_svn_or_dir).each do |file|
+          path = file.sub(ScopedExtension.root, '')
           directory = File.dirname(path)
           mkdir_p RAILS_ROOT + directory, :verbose => false
           cp file, RAILS_ROOT + path, :verbose => false
         end
-        unless LoginCandyExtension.root.starts_with? RAILS_ROOT # don't need to copy vendored tasks
-          puts "Copying rake tasks from LoginCandyExtension"
+        unless ScopedExtension.root.starts_with? RAILS_ROOT # don't need to copy vendored tasks
+          puts "Copying rake tasks from ScopedExtension"
           local_tasks_path = File.join(RAILS_ROOT, %w(lib tasks))
           mkdir_p local_tasks_path, :verbose => false
           Dir[File.join ImagesExtension.root, %w(lib tasks *.rake)].each do |file|
@@ -36,7 +36,7 @@ namespace :radiant do
       desc "Syncs all available translations for this ext to the English ext master"
       task :sync => :environment do
         # The main translation root, basically where English is kept
-        language_root = LoginCandyExtension.root + "/config/locales"
+        language_root = ScopedExtension.root + "/config/locales"
         words = TranslationSupport.get_translation_keys(language_root)
         
         Dir["#{language_root}/*.yml"].each do |filename|
