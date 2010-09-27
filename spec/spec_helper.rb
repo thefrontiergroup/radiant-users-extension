@@ -13,10 +13,6 @@ require "#{RADIANT_ROOT}/spec/spec_helper"
 
 Dataset::Resolver.default << (File.dirname(__FILE__) + "/datasets")
 
-if File.directory?(File.dirname(__FILE__) + "/matchers")
-  Dir[File.dirname(__FILE__) + "/matchers/*.rb"].each {|file| require file }
-end
-
 Spec::Runner.configure do |config|
   config.mock_with :rr
 end

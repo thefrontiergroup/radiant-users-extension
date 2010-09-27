@@ -1,6 +1,7 @@
 module Scoped
   module Lib
     module LoginSystem
+      
       def self.included(base)
         base.class_eval do
           protected
@@ -10,7 +11,7 @@ module Scoped
               if user_has_backend_access?
                 authorize_radiant
               else
-                path = Radiant::Config["scoped.#{current_user.access}.redirect"]
+                path = Radiant::Config["scoped.#{current_user.access}.welcome"]
                 
                 respond_to do |format|
                   format.html { redirect_to("/#{path}" || welcome_path ) }
@@ -36,6 +37,7 @@ module Scoped
             end 
         end
       end
+      
     end
   end
 end
