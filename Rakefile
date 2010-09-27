@@ -8,6 +8,7 @@ begin
     gem.homepage = "http://github.com/squaretalent/radiant-scoped-extension"
     gem.authors = ["Christopher Rankin", "Dirk Kelly"]
   end
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. This is only required if you plan to package scoped as a gem."
 end
