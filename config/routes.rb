@@ -1,6 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.login   'login',  :controller => 'admin/welcome', :action => 'login'
-  map.logout  'logout', :controller => 'admin/welcome', :action => 'logout'
+  map.with_options(:controller => 'admin/welcome') do |welcome|
+    welcome.login   'login',    :action => 'login'
+    welcome.logout  'logout',   :action => 'logout'
+  end
     
 end
