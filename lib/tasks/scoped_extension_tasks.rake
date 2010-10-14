@@ -27,7 +27,7 @@ namespace :radiant do
           puts "Copying rake tasks from ScopedExtension"
           local_tasks_path = File.join(RAILS_ROOT, %w(lib tasks))
           mkdir_p local_tasks_path, :verbose => false
-          Dir[File.join ImagesExtension.root, %w(lib tasks *.rake)].each do |file|
+          Dir[File.join ScopedExtension.root, %w(lib tasks *.rake)].each do |file|
             cp file, local_tasks_path, :verbose => false
           end
         end
