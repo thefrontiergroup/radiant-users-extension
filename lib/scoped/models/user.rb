@@ -8,8 +8,10 @@ module Scoped
           after_initialize :generate_api_key
           
           def generate_api_key
-            if self.api_key.nil?
+            begin
               self.api_key = self.sha1(Time.now + Radiant::Config['session_timeout'].to_i)
+            rescue
+              logger.error "attempt to create api key failed - please migrate radiant-scoped-extension"
             end
           end
         end

@@ -12,7 +12,7 @@ class ScopedDataset < Dataset::Base
       :name   => 'Visitor',
       :email  => 'visitor@example.com',
       :login  => 'visitor',
-      :access => 'visitor',
+      :access => 'some_visitor',
       :password               => 'radiant',
       :password_confirmation  => 'radiant'
   end
