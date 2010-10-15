@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{radiant-scoped-extension}
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christopher Rankin", "Dirk Kelly"]
-  s.date = %q{2010-10-14}
+  s.date = %q{2010-10-15}
   s.description = %q{Scoped allows you to create non-admin users with API access}
   s.email = %q{dk@squaretalent.com}
   s.extra_rdoc_files = [
