@@ -1,16 +1,16 @@
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "radiant-scoped-extension"
-    gem.summary = %Q{Scoped Extension for Radiant CMS}
-    gem.description = %Q{Scoped allows you to create non-admin users with API access}
+    gem.name = "radiant-users-extension"
+    gem.summary = %Q{Users Extension for Radiant CMS}
+    gem.description = %Q{Users creates support for non-admin users with API access}
     gem.email = "dk@squaretalent.com"
-    gem.homepage = "http://github.com/squaretalent/radiant-scoped-extension"
+    gem.homepage = "http://github.com/dirkkelly/radiant-users-extension"
     gem.authors = ["Christopher Rankin", "Dirk Kelly"]
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
-  puts "Jeweler (or a dependency) not available. This is only required if you plan to package scoped as a gem."
+  puts "Jeweler (or a dependency) not available. This is only required if you plan to package users as a gem."
 end
 
 # In rails 1.2, plugins aren't available in the path until they're loaded.
@@ -115,17 +115,17 @@ namespace :spec do
   end
 end
 
-desc 'Generate documentation for the scoped extension.'
+desc 'Generate documentation for the users extension.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'ScopedExtension'
+  rdoc.title    = 'UsersExtension'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
 # For extensions that are in transition
-desc 'Test the scoped extension.'
+desc 'Test the users extension.'
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
   t.pattern = 'test/**/*_test.rb'

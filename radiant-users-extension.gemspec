@@ -4,13 +4,13 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{radiant-scoped-extension}
-  s.version = "0.2.3"
+  s.name = %q{radiant-users-extension}
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christopher Rankin", "Dirk Kelly"]
-  s.date = %q{2010-10-15}
-  s.description = %q{Scoped allows you to create non-admin users with API access}
+  s.date = %q{2010-11-10}
+  s.description = %q{Users creates support for non-admin users with API access}
   s.email = %q{dk@squaretalent.com}
   s.extra_rdoc_files = [
     "README.md"
@@ -26,23 +26,18 @@ Gem::Specification.new do |s|
      "db/migrate/20100311021835_add_access_to_user.rb",
      "features/support/env.rb",
      "features/support/paths.rb",
-     "lib/scoped/lib/login_system.rb",
-     "lib/scoped/models/user.rb",
-     "lib/scoped/models/user/scoped.rb",
      "lib/tasks/scoped_extension_tasks.rake",
-     "radiant-scoped-extension.gemspec",
-     "scoped_extension.rb",
      "spec/datasets/scoped_dataset.rb",
      "spec/models/user_spec.rb",
      "spec/models/visitor_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/squaretalent/radiant-scoped-extension}
+  s.homepage = %q{http://github.com/dirkkelly/radiant-users-extension}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Scoped Extension for Radiant CMS}
+  s.summary = %q{Users Extension for Radiant CMS}
   s.test_files = [
     "spec/datasets/scoped_dataset.rb",
      "spec/models/user_spec.rb",

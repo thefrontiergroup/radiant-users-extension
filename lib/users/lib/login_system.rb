@@ -1,4 +1,4 @@
-module Scoped
+module Users
   module Lib
     module LoginSystem
       

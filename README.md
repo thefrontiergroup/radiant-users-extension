@@ -1,20 +1,20 @@
-# Radiant Scoped Extension
+# Radiant Users Extension
 
 Hook standard Radiant users to provide front end user creation and login.
 
-A good example comes from [radiant-shop-extension](http://github.com/squaretalent/radiant-shop-extension) in the use of customers
+A good example comes from [radiant-shop-extension](http://github.com/dirkkelly/radiant-shop-extension) in the use of customers
 
 ## Create a Model
 
     class ShopCustomer < User
-      include Scoped::Models::User::Scoped
+      include Users::Models::User::Scoped
     end
 
 When a customer is created the access attributes present status will prevent them from accessing the administration system.
 
 ## Define Their Welcome Page
 
-    Radiant::Config['scoped.shop_customer.redirect'] = '/cart'
+    Radiant::Config['users.shop_customer.redirect'] = '/cart'
 
 ## API Access
 
@@ -24,8 +24,8 @@ Login Candy provided us with authentication hooks allowing for API login, there 
 
 Gemfile
 
-    gem 'radiant-scoped-extension', :require => nil
+    gem 'radiant-users-extension', :require => nil
     
 config/environment.rb
 
-    config.gem 'radiant-scoped-extension', :lib => false
+    config.gem 'radiant-users-extension', :lib => false
