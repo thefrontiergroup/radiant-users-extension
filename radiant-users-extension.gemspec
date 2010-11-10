@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
      "lib/users/models/user.rb",
      "lib/users/models/user/scoped.rb",
      "radiant-users-extension.gemspec",
+     "spec/datasets/scoped_users_dataset.rb",
      "spec/models/user_spec.rb",
      "spec/models/visitor_spec.rb",
      "spec/spec.opts",
