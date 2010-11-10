@@ -1,4 +1,4 @@
-class ScopedDataset < Dataset::Base
+class ScopedUsersDataset < Dataset::Base
   
   def load
     create_model :user, :admin, 

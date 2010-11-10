@@ -26,12 +26,16 @@ Gem::Specification.new do |s|
      "db/migrate/20100311021835_add_access_to_user.rb",
      "features/support/env.rb",
      "features/support/paths.rb",
-     "lib/tasks/scoped_extension_tasks.rake",
-     "spec/datasets/scoped_dataset.rb",
+     "lib/tasks/users_extension_tasks.rake",
+     "lib/users/lib/login_system.rb",
+     "lib/users/models/user.rb",
+     "lib/users/models/user/scoped.rb",
+     "radiant-users-extension.gemspec",
      "spec/models/user_spec.rb",
      "spec/models/visitor_spec.rb",
      "spec/spec.opts",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "users_extension.rb"
   ]
   s.homepage = %q{http://github.com/dirkkelly/radiant-users-extension}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -39,7 +43,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Users Extension for Radiant CMS}
   s.test_files = [
-    "spec/datasets/scoped_dataset.rb",
+    "spec/datasets/scoped_users_dataset.rb",
      "spec/models/user_spec.rb",
      "spec/models/visitor_spec.rb",
      "spec/spec_helper.rb"

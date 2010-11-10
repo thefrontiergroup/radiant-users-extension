@@ -1,12 +1,12 @@
 require 'spec/spec_helper'
 
 class SomeVisitor < User
-  include Scoped::Models::User::Scoped
+  include Users::Models::User::Scoped
 end
 
 describe SomeVisitor do
 
-  dataset :scoped
+  dataset :scoped_users
   
   describe 'scope' do
     it 'should return only users with scoped access' do
