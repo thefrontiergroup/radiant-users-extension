@@ -30,7 +30,15 @@ module Users
             end
 
             def login_from_api_key
-              self.current_user = User.find_by_api_key(params[:api_key]) if params[:api_key].present?
+              result = nil
+              if params[:api_key].present?
+                result = User.find_by_api_key(params[:api_key])
+              else
+                authenticate_with_http_basic do |api_key,_|
+                  result = User.find_by_api_key(api_key)
+                end
+              end
+              result
             end 
         end
       end
