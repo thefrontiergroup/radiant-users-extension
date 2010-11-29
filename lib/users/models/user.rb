@@ -5,7 +5,7 @@ module Users
       def self.included(base)
         base.class_eval do
           attr_protected :access
-          after_initialize :generate_api_key
+          after_create :generate_api_key
           
           def generate_api_key
             begin
