@@ -4,6 +4,9 @@ class UsersExtension < Radiant::Extension
   url "http://github.com/dirkkelly/radiant-users-extension"
 
   def activate
+    # Tags
+    Page.send :include, Users::Tags::Core
+    
     # Models
     User.send :include, Users::Models::User
     

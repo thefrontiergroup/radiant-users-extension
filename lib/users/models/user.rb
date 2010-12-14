@@ -5,13 +5,13 @@ module Users
       def self.included(base)
         base.class_eval do
           attr_protected :access
-          after_create :generate_api_key
+          after_initialize :generate_api_key
           
           def generate_api_key
             begin
-              self.api_key = self.sha1(Time.now + Radiant::Config['session_timeout'].to_i)
+              self.api_key = ActiveSupport::SecureRandom.hex(18) unless api_key.present?
             rescue
-              logger.error "attempt to create api key failed - please migrate radiant-scoped-extension"
+              logger.error "attempt to create api key failed - please migrate radiant-users-extension"
             end
           end
         end
