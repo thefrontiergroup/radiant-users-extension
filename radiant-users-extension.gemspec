@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{radiant-users-extension}
-  s.version = "0.0.4"
+  s.version = "0.0.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christopher Rankin", "Dirk Kelly"]
-  s.date = %q{2010-11-30}
+  s.date = %q{2010-12-14}
   s.description = %q{Users creates support for non-admin users with API access}
   s.email = %q{dk@squaretalent.com}
   s.extra_rdoc_files = [
@@ -30,6 +30,8 @@ Gem::Specification.new do |s|
     "lib/users/lib/login_system.rb",
     "lib/users/models/user.rb",
     "lib/users/models/user/scoped.rb",
+    "lib/users/tags/core.rb",
+    "lib/users/tags/helpers.rb",
     "radiant-users-extension.gemspec",
     "spec/datasets/scoped_users_dataset.rb",
     "spec/models/user_spec.rb",
