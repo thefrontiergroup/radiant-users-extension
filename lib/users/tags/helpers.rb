@@ -4,11 +4,7 @@ module Users
       class << self
         
         def current_user(tag)
-          begin
-            User.find(tag.locals.page.request.session['user_id'])
-          rescue
-            nil
-          end
+          User.find_by_id(tag.locals.page.request.session['user_id'])
         end
         
       end
