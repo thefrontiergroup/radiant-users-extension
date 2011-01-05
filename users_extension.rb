@@ -16,6 +16,8 @@ class UsersExtension < Radiant::Extension
   # See your config/routes.rb file in this extension to define custom routes
   
   def activate
-    ApplicationController.send :include, Users::Controllers::ApplicationController
+    SiteController.send            :include, Users::Controllers::SiteController
+    ApplicationController.send     :include, Users::Controllers::ApplicationController
+    Admin::ResourceController.send :include, Users::Controllers::Admin::ResourceController
   end
 end
