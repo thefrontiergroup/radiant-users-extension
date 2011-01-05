@@ -1,9 +1,13 @@
-%h2 Resend confirmation instructions
-= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
-  = devise_error_messages!
-  %p
-    = f.label :email
-    %br/
-    = f.email_field :email
-  %p= f.submit "Resend confirmation instructions"
-= render :partial => "devise/shared/links"
+#single_form
+
+  %h1 Resend confirmation instructions
+
+  - form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
+    %p
+      = f.label :email
+      = f.text_field :email, :class => 'password textbox', :maxlength => 40, :size => 40, :type => "email"
+    %p.buttons
+      = f.submit "Resend confirmation instructions"
+      = render "shared/links"
+
+= render "shared/version"

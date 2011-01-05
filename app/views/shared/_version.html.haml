@@ -1,0 +1,5 @@
+%p.version
+  = t('powered_by')
+  %a{ :href => "http://radiantcms.org" } Radiant CMS
+  = t('version')   
+  = Radiant.loaded_via_gem? ? "#{Radiant::Version} (gem)." : "#{Radiant::Version}."

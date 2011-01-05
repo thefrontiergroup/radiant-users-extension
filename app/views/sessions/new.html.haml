@@ -1,15 +1,13 @@
-- body_classes << "single_form"
-
 #single_form
-
-  %h1= t('please_login')
+  
+  %h1= t('devise.sessions.link')
   
   - form_for(resource_name, resource, :url => session_path(resource_name)) do |f|
     %p
-      = f.label :login
+      = f.label :login, t('username_or_email')
       = f.text_field :login, :class => 'textbox', :maxlength => 40, :size => 40
     %p
-      = f.label :password
+      = f.label :password, t('password')
       = f.password_field :password, :class => 'textbox password', :maxlength => 40, :size => 40
     - if devise_mapping.rememberable?
       %p.remember_me
@@ -17,11 +15,6 @@
         = f.label :remember_me, t('remember_me_in_this_browser'), :class => "checkbox"
     %p.buttons
       = f.submit t('login')
+      = render "shared/links"
 
-/ = render :partial => "devise/shared/links"
-/ 
-/ %p.version
-/   = t('powered_by')
-/   %a{ :href => "http://radiantcms.org" } Radiant CMS
-/   = t('version')   
-/   = Radiant.loaded_via_gem? ? "#{Radiant::Version} (gem)." : "#{Radiant::Version}."
+= render "shared/version"
