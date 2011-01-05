@@ -10,27 +10,20 @@ unless defined? RADIANT_ROOT
   end
 end
 require "#{RADIANT_ROOT}/spec/spec_helper"
+require 'remarkable_rails'
 
-Dataset::Resolver.default << (File.dirname(__FILE__) + "/datasets")
-
-if File.directory?(File.dirname(__FILE__) + "/matchers")
-  Dir[File.dirname(__FILE__) + "/matchers/*.rb"].each {|file| require file }
-end
-
-Spec::Runner.configure do |config|
-  # config.use_transactional_fixtures = true
-  # config.use_instantiated_fixtures  = false
-  # config.fixture_path = RAILS_ROOT + '/spec/fixtures'
-
-  # You can declare fixtures for each behaviour like this:
-  #   describe "...." do
-  #     fixtures :table_a, :table_b
-  #
-  # Alternatively, if you prefer to declare them only once, you can
-  # do so here, like so ...
-  #
-  #   config.global_fixtures = :table_a, :table_b
-  #
-  # If you declare global fixtures, be aware that they will be declared
-  # for all of your examples, even those that don't use them.
+unless defined? USERS_ROOT
+  
+  USERS_ROOT = UsersExtension.root + '/spec'
+  
+  Dataset::Resolver.default << (USERS_ROOT + "/datasets")
+  
+  if File.directory?(USERS_ROOT + "/matchers")
+    Dir[USERS_ROOT + "/matchers/**/*.rb"].each {|file| require file }
+  end
+  
+  Spec::Runner.configure do |config|
+    config.mock_with :rr
+  end
+  
 end
