@@ -16,8 +16,6 @@ class UsersExtension < Radiant::Extension
   # See your config/routes.rb file in this extension to define custom routes
   
   def activate
-    # tab 'Content' do
-    #   add_item "Users", "/admin/users", :after => "Pages"
-    # end
+    ApplicationController.send :include, Users::Controllers::ApplicationController
   end
 end
