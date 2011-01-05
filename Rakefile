@@ -19,7 +19,7 @@ begin
     gem.require_paths = ["lib"]
     
     gem.add_dependency 'radiant', '~> 0.9.2'
-    gem.add_dependency 'devise',  '~> 1.1.5'
+    gem.add_dependency 'devise',  '~> 1.0.9'
     
     gem.post_install_message = %{
     Add this to your radiant project with:
