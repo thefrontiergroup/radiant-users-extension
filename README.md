@@ -6,6 +6,32 @@
 * Devise also works
 * Radiant-Users-Extension is also lovely <3
 
+# Installing
+  
+    git clone git@github.com:dirkkelly/radiant-users-extension vendor/extensions/users
+    cd vendor/extensions/users
+    git checkout devise
+    cd ../../../
+    rake radiant:extensions:users:migrate
+    
+# Styling
+
+I've been super lazy so far, there are currently no styles on anything.
+Hopefully this will change by the end of the day.
+
+Check out ``views/sessions`` for the login views, look around from there to find everything else
+
+# Migration
+
+* Passwords do not need to change, the migration will take care of updating these
+* Emails are now required for every user. You will get warned of users with missing emails and a dummy address _set@email.com_ will be applied
+
+Field changes
+
+    login    => username (setter and getter abstracted out)
+    password => encrypted_password
+    salt     => password_salt
+
 # Inheriting Classes
 
 _actually, this doesn't exist yet_
@@ -37,3 +63,7 @@ This extension uses the following gems, define them in a development and test gr
       gem 'rr',                             '~> 0.10.11'
       gem 'rcov',                           '~> 0.9.9'
     end
+    
+# LICENCE
+
+This extension was developed by [Dirk Kelly](http://twitter.com/dirkkelly) on [The Frontier Group's](http://twitter.com/frontiergroup) Time. It is licenced as MIT.
