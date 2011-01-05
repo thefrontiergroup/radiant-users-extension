@@ -8,6 +8,8 @@
 
 # Inheriting Classes
 
+_actually, this doesn't exist yet_
+
 User has a field `class_name`, when you inherit a class this will get set.
 
 If this field is not nil, the user will not have access to the administration system.
