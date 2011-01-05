@@ -38,4 +38,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  protected
+    
+  def password_required?
+    new_record? || destroyed? || password.present? || password_confirmation.present?
+  end
+  
 end

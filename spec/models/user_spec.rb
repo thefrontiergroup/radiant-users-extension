@@ -15,6 +15,18 @@ describe User do
     end
   end
   
+  describe "#update" do
+    it 'should not update a users password if it is blank' do
+      @user = users(:admin)
+      @user.valid_password?('password').should be_true
+      @user.update_attributes({ :password => "", :password_confirmation => "", :username => "newmin"})
+      
+      @user.valid?.should be_true
+      @user.valid_password?('password').should be_true
+      @user.username.should === 'newmin'
+    end
+  end
+  
   describe "#login=" do
     it "should set the username" do
       @user = users(:admin)
