@@ -7,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.destroy_user_session      'logout',       :controller => 'sessions',      :action => 'destroy', :conditions => { :method => :get  }
   map.old_destroy_user_session  'admin/logout', :controller => 'sessions',      :action => 'destroy', :conditions => { :method => :get  }
   
-  map.user_root_path            'admin',        :controller => 'admin/welcome', :action => 'index'
+  map.user_root_path            'users/root',   :controller => 'admin/welcome', :action => 'index'
   # This can redirect to anything by overiding ApplicationController#default_admin_path
   
 end
