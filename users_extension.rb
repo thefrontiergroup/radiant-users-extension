@@ -19,5 +19,6 @@ class UsersExtension < Radiant::Extension
     SiteController.send            :include, Users::Controllers::SiteController
     ApplicationController.send     :include, Users::Controllers::ApplicationController
     Admin::ResourceController.send :include, Users::Controllers::Admin::ResourceController
+    Admin::WelcomeController.send  :include, Users::Controllers::Admin::WelcomeController
   end
 end
