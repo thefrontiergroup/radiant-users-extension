@@ -36,10 +36,10 @@ describe User do
   end
   
   describe "self.unprotected_attributes" do
-    it "should be an array of [:name, :email, :login, :password, :password_confirmation, :locale]" do
+    it "should be an array of [:name, :email, :username, :login, :password, :password_confirmation, :locale, :class_name]" do
       # Make sure we clean up after anything set in another spec
       User.instance_variable_set(:@unprotected_attributes, nil)
-      User.unprotected_attributes.should == [:name, :email, :username, :login, :password, :password_confirmation, :locale]
+      User.unprotected_attributes.should == [:name, :email, :username, :login, :password, :password_confirmation, :locale, :class_name]
     end
   end
   describe "self.unprotected_attributes=" do
@@ -75,4 +75,15 @@ describe User, "roles" do
     users(:designer).has_role?(:designer).should be_true
     users(:admin).has_role?(:admin).should be_true
   end
+end
+
+describe User, "inheritence" do
+  
+  class Visitor < User; end
+  
+  it "should be scoped by class_name" do
+    v = Visitor.new
+    v.class_name.should == "Visitor"
+  end
+  
 end

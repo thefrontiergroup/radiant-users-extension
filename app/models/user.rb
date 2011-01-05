@@ -19,13 +19,15 @@ class User < ActiveRecord::Base
   belongs_to :created_by, :class_name => 'User'
   belongs_to :updated_by, :class_name => 'User'
   
+  set_inheritance_column :class_name
+  
   def has_role?(role)
     respond_to?("#{role}?") && send("#{role}?")
   end
   
   class << self
     def unprotected_attributes
-      @unprotected_attributes ||= [:name, :email, :username, :login, :password, :password_confirmation, :locale]
+      @unprotected_attributes ||= [:name, :email, :username, :login, :password, :password_confirmation, :locale, :class_name]
     end
     
     def unprotected_attributes=(array)
