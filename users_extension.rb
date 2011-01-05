@@ -16,9 +16,12 @@ class UsersExtension < Radiant::Extension
   # See your config/routes.rb file in this extension to define custom routes
   
   def activate
+    SessionsController.send        :include, Users::Controllers::SessionsController
     SiteController.send            :include, Users::Controllers::SiteController
     ApplicationController.send     :include, Users::Controllers::ApplicationController
     Admin::ResourceController.send :include, Users::Controllers::Admin::ResourceController
     Admin::WelcomeController.send  :include, Users::Controllers::Admin::WelcomeController
+    
+    Devise::Controllers::InternalHelpers.send :include, Users::Lib::Devise::Controllers::InternalHelpers
   end
 end
