@@ -1,12 +1,13 @@
 module Users
   module Controllers
-    module ApplicationController
+    module SessionsController
       
       def self.included(base)
         base.class_eval do
           
-          def default_admin_path
-            admin_pages_path
+          def set_standard_body_style
+            @body_classes ||= []
+            @body_classes
           end
           
         end
