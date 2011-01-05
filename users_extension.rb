@@ -6,22 +6,19 @@ class UsersExtension < Radiant::Extension
   description "Adds users to Radiant."
   url "http://github.com/dirkkelly/radiant-users-extension"
   
-  # extension_config do |config|
-  #   config.gem 'some-awesome-gem
-  #   config.after_initialize do
-  #     run_something
-  #   end
-  # end
-
-  # See your config/routes.rb file in this extension to define custom routes
-  
   def activate
-    SessionsController.send        :include, Users::Controllers::SessionsController
     SiteController.send            :include, Users::Controllers::SiteController
     ApplicationController.send     :include, Users::Controllers::ApplicationController
     Admin::ResourceController.send :include, Users::Controllers::Admin::ResourceController
     Admin::WelcomeController.send  :include, Users::Controllers::Admin::WelcomeController
     
+    SessionsController.send        :include, Users::Controllers::SingleFormBodyStyles
+    PasswordsController.send       :include, Users::Controllers::SingleFormBodyStyles
+    ConfirmationsController.send   :include, Users::Controllers::SingleFormBodyStyles
+    
     Devise::Controllers::InternalHelpers.send :include, Users::Lib::Devise::Controllers::InternalHelpers
+    
+    Radiant::Config['site.host'] ||= 'localhost:3000'
+    ActionMailer::Base.default_url_options = { :host => Radiant::Config['site.host'] }
   end
 end
