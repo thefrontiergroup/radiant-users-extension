@@ -4,7 +4,13 @@ class User < ActiveRecord::Base
   
   attr_accessor :login
   
-  def login; username; end
+  def login
+    self[:username]
+  end
+  
+  def login=(username)
+    self[:username] = username
+  end
   
   # Default Order
   default_scope           :order => 'name'

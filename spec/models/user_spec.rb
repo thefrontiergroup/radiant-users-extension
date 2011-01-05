@@ -9,6 +9,20 @@ describe User do
   it { should belong_to(:created_by).class_name('User') }
   it { should belong_to(:updated_by).class_name('User') }
   
+  describe "#login" do
+    it 'should return username' do
+      users(:admin).login.should === users(:admin).username
+    end
+  end
+  
+  describe "#login=" do
+    it "should set the username" do
+      @user = users(:admin)
+      @user.login = "new username"
+      @user.username.should == "new username"
+    end
+  end
+  
   describe "self.unprotected_attributes" do
     it "should be an array of [:name, :email, :login, :password, :password_confirmation, :locale]" do
       # Make sure we clean up after anything set in another spec
