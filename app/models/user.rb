@@ -19,7 +19,9 @@ class User < ActiveRecord::Base
   belongs_to :created_by, :class_name => 'User'
   belongs_to :updated_by, :class_name => 'User'
   
-  set_inheritance_column :class_name
+  validates_presence_of   :name
+  
+  set_inheritance_column  :class_name
   
   def has_role?(role)
     respond_to?("#{role}?") && send("#{role}?")

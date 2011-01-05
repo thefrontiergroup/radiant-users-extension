@@ -9,6 +9,8 @@ describe User do
   it { should belong_to(:created_by).class_name('User') }
   it { should belong_to(:updated_by).class_name('User') }
   
+  it { should validate_presence_of(:name) }
+  
   describe "#login" do
     it 'should return username' do
       users(:admin).login.should === users(:admin).username
