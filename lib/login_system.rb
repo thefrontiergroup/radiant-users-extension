@@ -14,7 +14,7 @@ module LoginSystem
       true
     else
       permissions   = self.class.controller_permissions[action]
-      flash[:error] = permissions[:denied_message] || 'Access denied.'
+      flash[:error] = permissions[:denied_message] || 'You must have moderator privileges to perform this action.'
       respond_to do |format|
         format.html { redirect_to(default_admin_path) }
         format.any(:xml, :json) { head :forbidden }
@@ -51,7 +51,7 @@ module LoginSystem
       permissions = controller_permissions[action.to_s.intern]
       case
       when allowed_roles = permissions[:when]
-        allowed_roles = [allowed_roles].flatten
+        allowed_roles = [allowed_roles].flatten || [:admin,:designer,:user]
         allowed_roles.include? user.class_name.downcase.to_sym
       when condition_method = permissions[:if]
         instance.send(condition_method)
