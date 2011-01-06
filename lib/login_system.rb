@@ -4,6 +4,7 @@ module LoginSystem
     base.extend ClassMethods
     base.class_eval do
       prepend_before_filter :authorize
+      prepend_before_filter :authenticate_user!
     end
   end
   
