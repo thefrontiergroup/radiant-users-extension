@@ -3,3 +3,4 @@ en:
   users: Users
   email: 'E-mail Address'
   new_password: 'New Password'
+  current_password: 'Current Password'

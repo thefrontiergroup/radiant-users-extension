@@ -13,13 +13,28 @@
     git checkout devise
     cd ../../../
     rake radiant:extensions:users:migrate
+
+# Registrations
+
+You will need to override the Devise definition in the user model
+
+    User.class_eval do
     
-# Styling
+      devise :database_authenticatable, :registerable, :confirmable, :recoverable, :rememberable, :token_authenticatable, :validatable
+    
+    end
 
-I've been super lazy so far, there are currently no styles on anything.
-Hopefully this will change by the end of the day.
+You can set a custom class_name on new registrations
 
-Check out ``views/sessions`` for the login views, look around from there to find everything else
+    User.class_eval do
+    
+      protected
+      
+      def set_class_name
+        self.class_name ||= "Visitor"
+      end
+    
+    end
 
 # Migration
 

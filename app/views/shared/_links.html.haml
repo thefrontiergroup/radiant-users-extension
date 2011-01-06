@@ -1,14 +1,13 @@
-%span.links
-  - if controller_name != 'sessions'
-    = link_to "Sign in", new_session_path(resource_name)
-  - if devise_mapping.registerable? && controller_name != 'registrations'
-    = link_to "Sign up", new_registration_path(resource_name)
-  - if devise_mapping.recoverable? && controller_name != 'passwords'
-    = link_to "Forgot your password?", new_password_path(resource_name)
-  - if devise_mapping.confirmable? && controller_name != 'confirmations'
-    = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name)
-  - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
-    = link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name)
+- unless user_signed_in?
+  %span.links
+    - if controller_name != 'sessions'
+      = link_to t('devise.sessions.link'), new_session_path(resource_name)
+    - if devise_mapping.recoverable? && controller_name != 'passwords'  && controller_name != 'registrations'
+      = link_to t('devise.passwords.link'), new_password_path(resource_name)
+    - if devise_mapping.confirmable? && controller_name != 'confirmations'
+      = link_to t('devise.confirmations.link'), new_confirmation_path(resource_name)
+    - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
+      = link_to t('devise.unlocks.link'), new_unlock_path(resource_name)
   
 %style{:type=>"text/css"}
   :sass
@@ -16,6 +15,15 @@
     
       #single_form 
         padding-bottom: 10px !important
+          
+        h2
+          position: absolute
+          top: 20px
+          right: 25px
+          font-size: 0.8em
+      
+        em
+          float: right
       
         p.buttons
           padding-top: 10px

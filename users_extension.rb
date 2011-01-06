@@ -15,6 +15,7 @@ class UsersExtension < Radiant::Extension
     SessionsController.send        :include, Users::Controllers::SingleFormBodyStyles
     PasswordsController.send       :include, Users::Controllers::SingleFormBodyStyles
     ConfirmationsController.send   :include, Users::Controllers::SingleFormBodyStyles
+    RegistrationsController.send   :include, Users::Controllers::SingleFormBodyStyles
     
     Devise::Controllers::InternalHelpers.send :include, Users::Lib::Devise::Controllers::InternalHelpers
     

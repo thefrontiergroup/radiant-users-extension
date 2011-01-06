@@ -1,7 +1,14 @@
 #single_form
   
-  %h1= t('devise.sessions.link')
+  %h1
+    = t('devise.sessions.link')  
   
+  - if devise_mapping.registerable?
+    %h2
+      (or&nbsp;
+      %span<>= link_to(t('devise.registrations.link'), new_registration_path(resource_name))
+      )
+    
   - form_for(resource_name, resource, :url => session_path(resource_name)) do |f|
     %p
       = f.label :login, t('username_or_email')
