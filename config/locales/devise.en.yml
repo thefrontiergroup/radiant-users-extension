@@ -11,8 +11,6 @@ en:
       invalid_token: 'Invalid authentication token.'
       timeout: 'Your session expired, please sign in again to continue.'
       inactive: 'Your account was not activated yet.'
-      user:
-        error: 'Invalid username, e-mail address, or password.'
     passwords:
       link: 'Forgot password?'
       button: 'Send reset instructions'
