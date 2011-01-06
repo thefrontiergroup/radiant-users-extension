@@ -18,7 +18,7 @@ begin
     gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
     gem.require_paths = ["lib"]
     
-    gem.add_dependency 'radiant', '~> 0.9.2'
+    gem.add_dependency 'radiant', '~> 0.9'
     gem.add_dependency 'devise',  '~> 1.0.9'
     
     gem.post_install_message = %{
