@@ -10,6 +10,7 @@ describe User do
   it { should belong_to(:updated_by).class_name('User') }
   
   it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:class_name) }
   
   describe "#login" do
     it 'should return username' do

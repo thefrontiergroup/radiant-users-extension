@@ -20,8 +20,11 @@ class User < ActiveRecord::Base
   belongs_to :updated_by, :class_name => 'User'
   
   validates_presence_of   :name
+  validates_presence_of   :class_name
   
   set_inheritance_column  :class_name
+  
+  before_validation       :set_class_name
   
   def has_role?(role)
     respond_to?("#{role}?") && send("#{role}?")
@@ -46,6 +49,10 @@ class User < ActiveRecord::Base
     
   def password_required?
     new_record? || destroyed? || password.present? || password_confirmation.present?
+  end
+  
+  def set_class_name
+    self.class_name ||= "User"
   end
   
 end
