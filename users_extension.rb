@@ -1,12 +1,13 @@
-# Uncomment this if you reference any of your controllers in activate
-# require_dependency 'application_controller'
 require 'radiant-users-extension/version'
+
 class UsersExtension < Radiant::Extension
   version RadiantUsersExtension::VERSION
   description "Adds users to Radiant."
   url "http://github.com/dirkkelly/radiant-users-extension"
   
   def activate
+    Page.send                      :include, Users::Tags::Core
+    
     SiteController.send            :include, Users::Controllers::SiteController
     ApplicationController.send     :include, Users::Controllers::ApplicationController
     Admin::ResourceController.send :include, Users::Controllers::Admin::ResourceController
