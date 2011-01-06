@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
-describe Users::Tags::CoreTags, "collection" do
+describe Users::Tags::Core, "collection" do
   
   it 'should describe these tags' do
-    Users::Tags::CoreTags.tags.sort.should == [
+    Users::Tags::Core.tags.sort.should == [
       'user',
       'user:if_user',
       'user:unless_user',
@@ -22,7 +22,7 @@ describe Users::Tags::CoreTags, "collection" do
   
 end
 
-describe Users::Tags::CoreTags do
+describe Users::Tags::Core do
 
   dataset :pages, :devise_users
   
