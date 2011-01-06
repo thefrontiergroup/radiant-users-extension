@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   
   class << self
     def unprotected_attributes
-      @unprotected_attributes ||= [:name, :email, :username, :login, :password, :password_confirmation, :locale, :class_name]
+      @unprotected_attributes ||= [:name, :email, :username, :login, :password, :password_confirmation, :locale]
     end
     
     def unprotected_attributes=(array)

@@ -39,10 +39,10 @@ describe User do
   end
   
   describe "self.unprotected_attributes" do
-    it "should be an array of [:name, :email, :username, :login, :password, :password_confirmation, :locale, :class_name]" do
+    it "should be an array of [:name, :email, :username, :login, :password, :password_confirmation, :locale]" do
       # Make sure we clean up after anything set in another spec
       User.instance_variable_set(:@unprotected_attributes, nil)
-      User.unprotected_attributes.should == [:name, :email, :username, :login, :password, :password_confirmation, :locale, :class_name]
+      User.unprotected_attributes.should == [:name, :email, :username, :login, :password, :password_confirmation, :locale]
     end
   end
   describe "self.unprotected_attributes=" do
