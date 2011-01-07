@@ -56,7 +56,7 @@ describe User do
     end
     it "should not set the class name if they're not an admin" do
       @user = users(:designer)
-      @user.new_class_name = "boggle_snap"
+      @user.new_class_name = "boggle snap"
       @user.class_name.should_not == "boggle snap"
     end
   end
