@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :confirmable, :recoverable, :rememberable, :token_authenticatable, :validatable rescue nil
   # When inheriting this can raise an exception on the new models
   
-  attr_accessor :login
+  attr_accessor :login, :new_class_name
   
   def login
     self[:username]
@@ -15,6 +15,15 @@ class User < ActiveRecord::Base
     self[:username] = username
   end
   
+  def new_class_name
+    self[:class_name]
+  end
+  
+  def new_class_name=(class_name)
+    @current_user = UserActionObserver.current_user
+    self[:class_name] = @current_user.has_role?(:admin) ? class_name : self[:class_name]
+  end
+    
   def authorized?
     @@authorized_types.include?(class_name)
   end

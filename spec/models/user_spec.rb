@@ -38,6 +38,29 @@ describe User do
     end
   end
   
+  describe '#new_class_name' do
+    it "should set the class_name" do
+      @user = users(:admin)
+      @user.new_class_name.should == @user.class_name
+    end
+  end
+  
+  describe '#new_class_name=' do
+    before :each do
+      @user = users(:admin)
+      mock(UserActionObserver).current_user { @user}
+    end
+    it "should set the class_name" do
+      @user.new_class_name = "boggle snap"
+      @user.class_name.should == "boggle snap"
+    end
+    it "should not set the class name if they're not an admin" do
+      @user = users(:designer)
+      @user.new_class_name = "boggle_snap"
+      @user.class_name.should_not == "boggle snap"
+    end
+  end
+  
   describe "self.unprotected_attributes" do
     it "should be an array of [:name, :email, :username, :login, :password, :password_confirmation, :locale]" do
       # Make sure we clean up after anything set in another spec

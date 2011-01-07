@@ -1,4 +1,4 @@
-- form_for @user, :url => admin_user_path(@user) do |f|
+- form_for "user", :url => admin_user_path(@user), :html => { :method => "put" } do |f|
   = hidden_field "user", "lock_version"
   
   = render :partial => 'avatar' unless @user.new_record?
@@ -9,7 +9,7 @@
     - form.edit_name do
       %p
         = f.label :name, t('name') 
-        = f.text_field :name, :class => "textbox activate", :size => 32, :maxlength => 100 
+        = f.text_field :name, :class => "textbox activate", :size => 32, :maxlength => 100, :object => :user
     
     - form.edit_email do
       %p
@@ -18,16 +18,16 @@
     
     - form.edit_username do
       %p
-        = f.label :login, t('username') 
-        = f.text_field "login", :class => "textbox", :size => 32, :maxlength => 40, :autocomplete => 'off'
+        = f.label :username, t('username') 
+        = f.text_field :username, :class => "textbox", :size => 32, :maxlength => 40, :autocomplete => 'off'
     
     - form.edit_password do
       = render "password_fields", :f => f
     
     - form.edit_roles do
       %p
-        = f.label :class_name, t('role')
-        = f.text_field :class_name, :class => "textbox", :size => 32, :maxlength => 40, :autocomplete => 'off'
+        = f.label :new_class_name, t('role')
+        = f.text_field :new_class_name, :class => "textbox", :size => 32, :maxlength => 40, :autocomplete => 'off', :value => @user.class_name
     
     - form.edit_locale do
       %p
