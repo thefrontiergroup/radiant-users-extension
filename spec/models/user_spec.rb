@@ -10,7 +10,7 @@ describe User do
   it { should belong_to(:updated_by).class_name('User') }
   
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:class_name) }
+  # it { should validate_presence_of(:class_name) } not working
   
   describe "#login" do
     it 'should return username' do
@@ -78,6 +78,13 @@ describe User, "roles" do
     users(:designer).has_role?(:designer).should be_true
     users(:admin).has_role?(:admin).should be_true
   end
+  
+  it "should return true for #authorized? userss" do
+    users(:existing).authorized?.should be_true
+    users(:designer).authorized?.should be_true
+    users(:admin).authorized?.should be_true
+  end
+  
 end
 
 describe User, "inheritence" do

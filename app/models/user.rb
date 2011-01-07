@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   
-  devise :database_authenticatable, :confirmable, :recoverable, :rememberable, :token_authenticatable, :validatable
+  @@authorized_types = [ 'Admin', 'Designer', 'User' ]
+  
+  devise :database_authenticatable, :confirmable, :recoverable, :rememberable, :token_authenticatable, :validatable rescue nil
+  # When inheriting this can raise an exception on the new models
   
   attr_accessor :login
   
@@ -12,6 +15,10 @@ class User < ActiveRecord::Base
     self[:username] = username
   end
   
+  def authorized?
+    @@authorized_types.include?(class_name)
+  end
+  
   # Default Order
   default_scope           :order => 'name'
   
@@ -19,15 +26,15 @@ class User < ActiveRecord::Base
   belongs_to :created_by, :class_name => 'User'
   belongs_to :updated_by, :class_name => 'User'
   
-  validates_presence_of   :name
-  validates_presence_of   :class_name
-  
   set_inheritance_column  :class_name
   
   before_validation       :set_class_name
   
+  validates_presence_of   :name
+  validates_presence_of   :class_name # Has no effect
+  
   def has_role?(role)
-    respond_to?("#{role}?") && send("#{role}?")
+    class_name.downcase.to_sym == role.to_s.downcase.to_sym
   end
   
   class << self

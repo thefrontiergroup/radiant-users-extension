@@ -5,6 +5,10 @@ class UsersExtension < Radiant::Extension
   description "Adds users to Radiant."
   url "http://github.com/dirkkelly/radiant-users-extension"
   
+  extension_config do |config|    
+    config.gem 'devise'
+  end
+  
   def activate
     Page.send                      :include, Users::Tags::Core
     
