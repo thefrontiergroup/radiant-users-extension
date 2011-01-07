@@ -23,6 +23,14 @@ class User < ActiveRecord::Base
     @current_user = UserActionObserver.current_user
     self[:class_name] = @current_user.has_role?(:admin) ? class_name : self[:class_name]
   end
+  
+  def admin?
+    has_role?(:admin)
+  end
+  
+  def designer?
+    has_role?(:designer)
+  end
     
   def authorized?
     @@authorized_types.include?(class_name)

@@ -18,6 +18,20 @@ describe User do
     end
   end
   
+  describe '#admin?' do
+    it 'should return whether the user is an admin' do
+      users(:admin).admin?.should be_true
+      users(:designer).admin?.should be_false
+    end
+  end
+  
+  describe '#designer?' do
+    it 'should return whether the user is an designer' do
+      users(:designer).designer?.should be_true
+      users(:admin).designer?.should be_false
+    end
+  end
+  
   describe "#update" do
     it 'should not update a users password if it is blank' do
       @user = users(:admin)
