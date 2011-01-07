@@ -1,11 +1,11 @@
 class DeviseUsersDataset < Dataset::Base
   
   def load
-    create_user "Existing"
-    create_user "Another"
-    create_user "Admin",      :admin => true
-    create_user "Designer",   :designer => true
-    create_user "Non_admin",  :admin => false
+    create_user "Existing",   :class_name => 'User'
+    create_user "Another",    :class_name => 'User'
+    create_user "Admin",      :class_name => 'Admin'
+    create_user "Designer",   :class_name => 'Designer'
+    create_user "Non_admin",  :class_name => 'Visitor'
   end
   
   helpers do

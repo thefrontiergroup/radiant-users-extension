@@ -23,25 +23,15 @@ module Users
       
       desc %{ will expand if the user can access radiant }
       tag 'user:if_authorized' do |tag|
-        tag.expand unless tag.locals.user.access.present?
+        tag.expand if tag.locals.user.authorized?
       end
       
       desc %{ will expand if the user can not access radiant }
       tag 'user:unless_authorized' do |tag|
-        tag.expand if tag.locals.user.access.present?
+        tag.expand unless tag.locals.user.authorized?
       end
       
-      desc %{ will expand if the user is an admin}
-      tag 'user:if_admin' do |tag|
-        tag.expand if tag.locals.user.admin
-      end
-      
-      desc %{ will expand if the user is not an admin }
-      tag 'user:unless_admin' do |tag|
-        tag.expand unless tag.locals.user.admin
-      end
-      
-      [:name, :first_name, :last_name, :login, :email, :access].each do |symbol|
+      [:name, :login, :username, :email, :class_name].each do |symbol|
         desc %{ outputs the #{symbol} of the current user }
         tag "user:#{symbol}" do |tag|
           return unless tag.locals.user.present?
