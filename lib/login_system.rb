@@ -35,7 +35,8 @@ module LoginSystem
   
   module ClassMethods
     def no_login_required
-      skip_before_filter :authenticate_user
+      # skip_before_filter :authenticate_user
+      # Not working in some systems
     end
     
     def only_allow_access_to(*args)
