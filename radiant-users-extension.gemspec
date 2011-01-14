@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{radiant-users-extension}
-  s.version = "2.0.3"
+  s.version = "2.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dirk Kelly"]
@@ -64,10 +64,13 @@ Gem::Specification.new do |s|
     "lib/users/controllers/admin/resource_controller.rb",
     "lib/users/controllers/admin/welcome_controller.rb",
     "lib/users/controllers/application_controller.rb",
+    "lib/users/controllers/devise/confirmations_controller.rb",
+    "lib/users/controllers/devise/passwords_controller.rb",
+    "lib/users/controllers/devise/registrations_controller.rb",
+    "lib/users/controllers/devise/sessions_controller.rb",
     "lib/users/controllers/single_form_body_styles.rb",
     "lib/users/controllers/site_controller.rb",
     "lib/users/lib/devise/controllers/internal_helpers.rb",
-    "lib/users/lib/login_system.rb",
     "lib/users/models/user.rb",
     "lib/users/models/user/scoped.rb",
     "lib/users/tags/core.rb",
@@ -86,7 +89,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/dirkkelly/radiant-users-extension}
   s.post_install_message = %q{
     Add this to your radiant project with:
-      config.gem 'radiant-users-extension', :version => '2.0.3'
+      config.gem 'radiant-users-extension', :version => '2.0.4'
     }
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.4.1}
