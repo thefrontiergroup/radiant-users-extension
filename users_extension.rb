@@ -20,11 +20,10 @@ class UsersExtension < Radiant::Extension
     
     Admin::WelcomeController.send  :include, Users::Controllers::Admin::WelcomeController
     
-    SessionsController.send        :include, Users::Controllers::SiteController, Users::Controllers::SingleFormBodyStyles
-    SessionsController.send        :include, Users::Controllers::SiteController, Users::Controllers::SingleFormBodyStyles
-    PasswordsController.send       :include, Users::Controllers::SiteController, Users::Controllers::SingleFormBodyStyles
-    ConfirmationsController.send   :include, Users::Controllers::SiteController, Users::Controllers::SingleFormBodyStyles
-    RegistrationsController.send   :include, Users::Controllers::SiteController, Users::Controllers::SingleFormBodyStyles
+    SessionsController.send        :include, Users::Controllers::Devise::SessionsController
+    PasswordsController.send       :include, Users::Controllers::Devise::PasswordsController
+    ConfirmationsController.send   :include, Users::Controllers::Devise::ConfirmationsController
+    RegistrationsController.send   :include, Users::Controllers::Devise::RegistrationsController
     
     Devise::Controllers::InternalHelpers.send :include, Users::Lib::Devise::Controllers::InternalHelpers
     

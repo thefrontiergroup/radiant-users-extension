@@ -16,6 +16,10 @@ module Users
                   :scope => [:devise, controller_name.to_sym], :default => kind)
               end
               
+              def after_sign_in_path_for(resource)
+                default_admin_path
+              end
+              
             end
           end
           
