@@ -25,6 +25,9 @@ module LoginSystem
         end
         false
       end
+    else
+      redirect_to after_sign_out_path_for(current_user)
+      false
     end
   end
   alias_method_chain :authenticate_user, :authorize
@@ -56,8 +59,8 @@ module LoginSystem
     def user_has_access_to_action?(user, action, instance=new)
       permissions = controller_permissions[action.to_s.intern]
       case
-      when allowed_roles = permissions[:when]
-        allowed_roles = [allowed_roles].flatten || [:admin,:designer,:user]
+      when allowed_roles = permissions[:when] || [:admin,:designer,:user]
+        allowed_roles = [allowed_roles].flatten
         allowed_roles.include? user.class_name.downcase.to_sym
       when condition_method = permissions[:if]
         instance.send(condition_method)
