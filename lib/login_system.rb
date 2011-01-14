@@ -3,25 +3,31 @@ module LoginSystem
   def self.included(base)
     base.extend ClassMethods
     base.class_eval do
-      prepend_before_filter :authorize
-      prepend_before_filter :authenticate_user!
+      prepend_before_filter :authenticate_user
     end
   end
   
-  def authorize
-    action = action_name.to_s.intern
-    if user_has_access_to_action?(action)
-      true
-    else
-      permissions   = self.class.controller_permissions[action]
-      flash[:error] = permissions[:denied_message] || 'You must have moderator privileges to perform this action.'
-      respond_to do |format|
-        format.html { redirect_to(default_admin_path) }
-        format.any(:xml, :json) { head :forbidden }
+  def authenticate_user
+    authenticate_user!
+  end
+  
+  def authenticate_user_with_authorize
+    if authenticate_user_without_authorize
+      action = action_name.to_s.intern
+      if user_has_access_to_action?(action)
+        true
+      else
+        permissions   = self.class.controller_permissions[action]
+        flash[:error] = permissions[:denied_message] || 'You must have moderator privileges to perform this action.'
+        respond_to do |format|
+          format.html { redirect_to(default_admin_path) }
+          format.any(:xml, :json) { head :forbidden }
+        end
+        false
       end
-      false
     end
   end
+  alias_method_chain :authenticate_user, :authorize
   
   def user_has_access_to_action?(action)
     self.class.user_has_access_to_action?(current_user, action, self)
@@ -29,8 +35,7 @@ module LoginSystem
   
   module ClassMethods
     def no_login_required
-      skip_before_filter :authenticate_user!
-      skip_before_filter :authorize
+      skip_before_filter :authenticate_user
     end
     
     def only_allow_access_to(*args)
