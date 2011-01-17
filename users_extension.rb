@@ -1,4 +1,5 @@
 require 'radiant-users-extension/version'
+require 'devise'
 
 class UsersExtension < Radiant::Extension
   version RadiantUsersExtension::VERSION
