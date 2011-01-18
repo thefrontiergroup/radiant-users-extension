@@ -1,8 +1,6 @@
-require 'devise'
-
 class User < ActiveRecord::Base
   
-  @@authorized_types = [ 'Admin', 'Designer', 'User' ]
+  @@authorized_types = [ 'Administrator', 'Designer', 'User' ]
   
   devise :database_authenticatable, :confirmable, :recoverable, :rememberable, :token_authenticatable, :validatable
   # When inheriting this can raise an exception on the new models
@@ -11,6 +9,8 @@ class User < ActiveRecord::Base
   
   # Default Order
   default_scope           :order => 'name'
+  
+  set_inheritance_column  :class_name
   
   # Associations
   belongs_to :created_by, :class_name => 'User'

@@ -2,12 +2,17 @@ class User < ActiveRecord::Base; end
 
 class MovePermissionsToClass < ActiveRecord::Migration
   def self.up
-    User.find_each do |u|
-      class_name = "User"
-      class_name = "Designer" if u.designer == true
-      class_name = "Admin"    if u.admin == true
+    
+    begin
+      User.find_each do |u|
+        class_name = "User"
+        class_name = "Designer"      if u.designer == true
+        class_name = "Administrator" if u.admin == true
       
-      u.update_attribute(:class_name, class_name)
+        u.update_attribute(:class_name, class_name)
+      end
+    rescue
+      # You probably didn't need this then
     end
     
     remove_column :users, :admin
