@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{radiant-users-extension}
-  s.version = "2.0.8"
+  s.version = "2.1.0.beta"
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dirk Kelly"]
-  s.date = %q{2011-01-17}
+  s.date = %q{2011-01-18}
   s.description = %q{Makes Radiant better by adding users!}
   s.email = ["dk@dirkkelly.com"]
   s.extra_rdoc_files = [
@@ -22,7 +22,10 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "app/helpers/admin/users_helper.rb",
+    "app/models/administrator.rb",
+    "app/models/designer.rb",
     "app/models/user.rb",
+    "app/models/visitor.rb",
     "app/views/admin/users/_fields.html.haml",
     "app/views/admin/users/_form.html.haml",
     "app/views/confirmations/new.html.haml",
@@ -47,11 +50,10 @@ Gem::Specification.new do |s|
     "config/locales/en.yml",
     "config/routes.rb",
     "cucumber.yml",
-    "db/migrate/20100311014641_add_api_key_to_users.rb",
-    "db/migrate/20100311021835_add_access_to_user.rb",
     "db/migrate/20110105024337_change_users_to_devise.rb",
     "db/migrate/20110105150917_add_class_name_field.rb",
     "db/migrate/20110107032850_move_permissions_to_class.rb",
+    "db/migrate/20110118103247_change_admin_to_administrator.rb",
     "features/support/env.rb",
     "features/support/paths.rb",
     "lib/login_system.rb",
@@ -86,10 +88,10 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/dirkkelly/radiant-users-extension}
   s.post_install_message = %q{
     Add this to your radiant project with:
-      config.gem 'radiant-users-extension', :version => '2.0.8'
+      config.gem 'radiant-users-extension', :version => '2.1.0.beta'
     }
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.4.1}
+  s.rubygems_version = %q{1.4.2}
   s.summary = %q{Users for Radiant CMS}
   s.test_files = [
     "features/support/env.rb",
