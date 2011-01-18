@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "app/models/visitor.rb",
     "app/views/admin/users/_fields.html.haml",
     "app/views/admin/users/_form.html.haml",
+    "app/views/admin/users/remove.html.haml",
     "app/views/confirmations/new.html.haml",
     "app/views/devise_mailer/confirmation_instructions.html.haml",
     "app/views/devise_mailer/reset_password_instructions.html.haml",
