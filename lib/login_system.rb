@@ -33,7 +33,7 @@ module LoginSystem
   alias_method_chain :authenticate_user, :authorize
   
   def user_has_access_to_action?(action)
-    self.class.user_has_access_to_action?(current_user, action, self)
+    result = self.class.user_has_access_to_action?(current_user, action, self)
   end
   
   module ClassMethods
@@ -57,16 +57,24 @@ module LoginSystem
     end
     
     def user_has_access_to_action?(user, action, instance=new)
+      result = false
+      
       permissions = controller_permissions[action.to_s.intern]
       case
-      when allowed_roles = permissions[:when] || [:administrator,:designer,:user]
-        allowed_roles = [allowed_roles].flatten
-        allowed_roles.include? user.class_name.downcase.to_sym
-      when condition_method = permissions[:if]
-        instance.send(condition_method)
+      when permissions[:when].present?
+        allowed_roles = [permissions[:when]].flatten
+        
+        # We no longer have an admin role, if it's in there replace it with administrator
+        allowed_roles.map! { |role| role == :admin ? :administrator : role }
+        
+        result = allowed_roles.include? user.class_name.downcase.to_sym
+      when permissions[:if].present?
+        result = instance.send(permissions[:if])
       else
-        true
+        result = [:administrator,:designer,:user].include? user.class_name.downcase.to_sym
       end
+      
+      return result
     end
   end
   
