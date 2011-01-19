@@ -7,7 +7,7 @@ module Users
           include Users::Controllers::SingleFormBodyStyles
           
           base.class_eval do
-            skip_before_filter :authenticate_user, :only => [ :new, :create ]
+            skip_before_filter :authenticate_user, :only => [ :new, :create, :edit, :update ]
           end
         end
       
