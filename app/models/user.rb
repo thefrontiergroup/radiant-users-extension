@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   
   @@authorized_types = [ 'Administrator', 'Designer', 'User' ]
   
-  devise :database_authenticatable, :confirmable, :recoverable, :rememberable, :token_authenticatable, :validatable
+  devise :database_authenticatable, :registerable, :confirmable, :recoverable, :rememberable, :token_authenticatable, :validatable
   # When inheriting this can raise an exception on the new models
   
   attr_accessor :login, :new_class_name
