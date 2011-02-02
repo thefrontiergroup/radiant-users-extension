@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{radiant-users-extension}
-  s.version = "2.1.2"
+  s.version = "2.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dirk Kelly"]
-  s.date = %q{2011-01-24}
+  s.date = %q{2011-02-02}
   s.description = %q{Makes Radiant better by adding users!}
   s.email = ["dk@dirkkelly.com"]
   s.extra_rdoc_files = [
@@ -90,7 +90,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/dirkkelly/radiant-users-extension}
   s.post_install_message = %q{
     Add this to your radiant project with:
-      config.gem 'radiant-users-extension', :version => '2.1.2'
+      config.gem 'radiant-users-extension', :version => '2.1.3'
     }
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.4.2}
