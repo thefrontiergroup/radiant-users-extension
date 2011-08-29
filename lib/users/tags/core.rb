@@ -2,11 +2,10 @@ module Users
   module Tags
     module Core
       include Radiant::Taggable
-      include Users::Tags::Helpers
 
       tag 'user' do |tag|
         return if tag.locals.page.cache?
-        tag.locals.user = current_user(tag)
+        tag.locals.user = Helpers.current_user(tag)
         tag.expand
       end
 
