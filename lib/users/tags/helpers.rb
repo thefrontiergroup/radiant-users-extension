@@ -12,7 +12,7 @@ module Users
 
         def current_impersonated_customer(tag)
           if customer_id = tag.locals.page.request.session[:impersonated_customer_id]
-            ShopCustomer.find_by_id(customer_id)
+            User.find_by_id(customer_id)
           end
         end
 

@@ -27,7 +27,10 @@ module Users
 
           def current_impersonated_customer
             if customer_id = session[:impersonated_customer_id]
-              ShopCustomer.find_by_id(customer_id)
+              user = User.find_by_id(customer_id)
+              return user if user.present?
+              # Remove stale ids from the session just in case
+              session.delete[:impersonated_customer_id]
             end
           end
 
@@ -35,7 +38,13 @@ module Users
             current_impersonated_customer.present?
           end
 
+          def stop_impersonating_customer
+            session[:impersonated_customer_id] = nil
+            session.merge!(session.delete(:old_session)) if session.key?(:old_session)
+          end
+
           def impersonate_customer(customer_id)
+            session[:old_session] = {:shop_order => session.delete(:shop_order)} if session.key?(:shop_order)
             session[:impersonated_customer_id] = customer_id
           end
 
