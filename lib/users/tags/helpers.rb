@@ -5,7 +5,7 @@ module Users
         include ActionView::Helpers::NumberHelper
 
         def current_logged_in_user(tag)
-          if user_id = tag.locals.page.request.session[:user_id]
+          if user_id = tag.locals.page.request.session['user_id']
             User.find_by_id(user_id)
           end
         end
